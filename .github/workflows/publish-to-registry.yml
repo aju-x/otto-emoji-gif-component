@@ -36,7 +36,7 @@ jobs:
           
           # Check if Release already exists
           if curl -s -H "Authorization: token $GITHUB_TOKEN" \
-            "https://api.github.com/repos/txp666/otto-emoji-gif-component/releases/tags/$TAG_NAME" | grep -q '"id"'; then
+            "https://api.github.com/repos/aju-x/otto-emoji-gif-component/releases/tags/$TAG_NAME" | grep -q '"id"'; then
             echo "Release $TAG_NAME already exists, skipping creation"
           else
             echo "Creating Release $TAG_NAME..."
@@ -44,11 +44,11 @@ jobs:
               -H "Authorization: token $GITHUB_TOKEN" \
               -H "Accept: application/vnd.github.v3+json" \
               -H "Content-Type: application/json; charset=utf-8" \
-              "https://api.github.com/repos/txp666/otto-emoji-gif-component/releases" \
+              "https://api.github.com/repos/aju-x/otto-emoji-gif-component/releases" \
               -d "{
                 \"tag_name\": \"$TAG_NAME\",
                 \"name\": \"$TAG_NAME\",
-                \"body\": \"$TAG_NAME\\n\\nComponent will be automatically synced to ESP Component Registry.\\n\\nView component: https://components.espressif.com/components/txp666/otto-emoji-gif-component\",
+                \"body\": \"$TAG_NAME\\n\\nComponent will be automatically synced to ESP Component Registry.\\n\\nView component: https://components.espressif.com/components/aju-x/otto-emoji-gif-component\",
                 \"draft\": false,
                 \"prerelease\": false
               }"
@@ -59,7 +59,7 @@ jobs:
         with:
           directories: >
             .
-          namespace: "txp666"
+          namespace: "aju-x"
           name: "otto-emoji-gif-component"
           api_token: ${{ secrets.IDF_COMPONENT_API_TOKEN }}
 
@@ -68,7 +68,7 @@ jobs:
           echo "## Component Release Info" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- **Tag**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Repository**: https://github.com/txp666/otto-emoji-gif-component" >> $GITHUB_STEP_SUMMARY
-          echo "- **Component Link**: https://components.espressif.com/components/txp666/otto-emoji-gif-component" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository**: https://github.com/aju-x/otto-emoji-gif-component" >> $GITHUB_STEP_SUMMARY
+          echo "- **Component Link**: https://components.espressif.com/components/aju-x/otto-emoji-gif-component" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Component uploaded to ESP Component Registry." >> $GITHUB_STEP_SUMMARY
